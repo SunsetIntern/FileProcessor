@@ -2,62 +2,53 @@ import pandas as pd
 import numpy as np
 import os
 import openpyxl
-from typing import List, Optional, Union
+from typing import List, Optional, Union, Tuple
 
 # Write Code Below
 # Index Order: follow raw data order
 
-loaded_dataframe = None
-
-def create_file(filepath:str, initial_sheet_name:str, initial_data:pd.DataFrame):
+def create_file(filepath:str, sheetNames:List[str], dataFrames:List[pd.DataFrame]) -> None:
+	""" < Precondition >
+	The order of the sheetname in {sheetNames} and it's corresponding dataframe in {dataFrames} should be the same.
+	i.e. sheetNames[i] will be written with dataFrames[i].
+	"""
 	writer = pd.ExcelWriter(filepath, engine='xlsxwriter')
-	initial_data.to_excel(writer, index=False, sheet_name=initial_sheet_name)
+	assert len(sheetNames) == len(dataFrames)
+	for i in range(len(sheetNames)):
+		dataFrames[i].to_excel(writer, index=False, sheet_name=sheetNames[i])
 	writer.close()
 
-def write_sheet_to_existing_file(filepath:str, sheetName:str, data:pd.DataFrame):
-	workbook = openpyxl.load_workbook(filepath)
-	if sheetName in workbook.sheetnames:   
-		# if sheetName already exists, overwrite the sheet
 
-
-	else:
-		# if sheetName does not exists, create a new sheet
-		writer = pd.ExcelWriter(filepath, engine = 'openpyxl')
-		writer.book = workbook
-		data.to_excel(writer, index=False, sheet_name = sheetName)
-		writer.save()
-		writer.close()
-
-
-def write_column(filepath:str, sheetName:str, columnName:str, content:Union[List, np.ndarray]):
-	df = load_data(filepath, sheetName)
-	assert len(content) == len(df)   # check if length of content == num of rows
+def write_column(df:pd.DataFrame, columnName:str, content:Union[List, np.ndarray]) -> pd.DataFrame:
+	""" 가장 오른쪽 위치에 {columnName}이라는 이름을 가진 column을 추가함. Then returns the updated dataframe.
+	"""
+	assert len(content) == len(df)             # check if length of content == num of rows
 	df[columnName] = content
-	write_sheet_to_existing_file(filepath, sheetName, df)
+	return df
 
 
-def write_row(filepath:str, sheetName:str, rowName:str, content:Union[List, np.ndarray]):
-	df = load_data(filepath, sheetName)        # append row in sheet {sheet_number}
+def write_row(df:pd.DataFrame, rowName:str, content:Union[List, np.ndarray]) -> pd.DataFrame:
+	""" 가장 아래줄에 {rowName}이라는 이름을 가진 row를 추가함. Then returns the updated dataframe.
+	"""
 	assert len(content) == len(df.columns)     # check if length of content == num of columns
-	df[rowName] = content
-	write_sheet_to_existing_file(filepath, sheetName, df)
+	df.loc[rowName] = content
+	return df
 
 
-def load_data(filepath:str, sheetName:str):
+def load_data(filepath:str, sheetName:str) -> pd.DataFrame:
 	df = pd.read_excel(filepath, sheetName)
 	return df
 
 
-def extract_column(df:pd.DataFrame, columnName:str, isPan:bool, limit=30):
-	# Extracts column {columnName} from the opened_file's dataframe {df}
-	# if isPan = true, truncate to limit(30)
-	# output = (column_name, numpy array)
+def extract_column(df:pd.DataFrame, columnName:str, isPan:bool, limit=30) -> Tuple[str, np.ndarray]:
+	""" Extracts column {columnName} from dataframe {df}.
+	If isPan = true, truncate the column at the {limit}'s element. Since this limit value can be changed, refer this value from json file.
+	"""
 	extracted_series = df[columnName]
 	num_elements = len(extracted_series)
 	if isPan:
 		num_elements = limit
 	content = np.array([extracted_series[i] for i in range(num_elements)])
-	# TODO : columnName이 output이 아닌 input에 들어가야 하지 않나?
 	return (columnName, content)
 
 # --------------- above jinhyung below sojeong ------------------------
@@ -73,13 +64,9 @@ def generate_index_column(column):
 	"""
 	return
 
-def compute_sum_for_property(property:str):
+def compute_sum_for_property(df:pd.DataFrame, property:str):
 	# outputs tuple (property, property_name, )
-	# output = ('COUNTRY', 'NL', {pcn: 3, pfn: 3})
+	# output = {'NL' : {pcn: 3, pfn: 3}, 'AN' : {pcn: 3, pfn: 3}}
 	return
 
-
-# write_sheet(True, 'test2.xlsx', 'sheet2', pd.DataFrame({"ABCD": [1, 2, 3, 4, 5]}))
-write_sheet_to_existing_file('test2.xlsx', 'sheet7', pd.DataFrame({"ABCD": [1, 2, 3, 4]}))
-# write_column('test2.xlsx', 'sheet3', 'second_column', [1, 2, 3, 4, 5])
 
