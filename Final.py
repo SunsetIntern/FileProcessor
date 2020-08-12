@@ -6,7 +6,7 @@ import re
 import copy
 import openpyxl as xl
 import xlsxwriter
-from paper_functions import integrated_paper_file_generator
+from Paper_Functions import integrated_paper_file_generator
 from typing import List, Dict, Optional, Union, Tuple
 from pandas.api.types import is_numeric_dtype
 from FileProcessor import *
