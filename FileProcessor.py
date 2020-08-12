@@ -60,7 +60,8 @@ def load_data(filepath:str, sheetName:str, year_from:int, year_until:int) -> pd.
 	for c in col_list:
 		if '_' in c:
 			year = "20" + str(c.split('_')[1])
-			if int(year) >= year_from and int(year) <= year_until:
+
+			if int(year) >= int(year_from) and int(year) <= int(year_until):
 				continue
 			else:
 				df = df.drop(c, axis = 1)
