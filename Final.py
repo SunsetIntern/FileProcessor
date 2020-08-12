@@ -7,6 +7,7 @@ import copy
 import openpyxl as xl
 import xlsxwriter
 from Paper_Functions import integrated_paper_file_generator
+from Patent_Functions import integrated_patent_file_generator
 from typing import List, Dict, Optional, Union, Tuple
 from pandas.api.types import is_numeric_dtype
 from FileProcessor import *
@@ -46,5 +47,6 @@ def generate_stat_file(settings):
 	if settings["result_type"] == "PAPER":
 		paper = integrated_paper_file_generator(settings, dict_info)
 		paper.generate_excel_file()
-
-
+    else:
+        patent = integrated_patent_file_generator(settings, dict_info)
+        patent.generate_excel_file()
