@@ -41,25 +41,25 @@ def choose_savepath(fileSettings, label):
     label.config(text=f'      {dir}      ')
 
 
-def clearLoadedFiles(fileSettings, listbox):
+def clear_loaded_files(fileSettings, listbox):
     listbox.delete(0, fileSettings.loaded_file_nums - 1)
     fileSettings.loaded_file_nums = 0
     fileSettings.loaded_file_abspaths = []
     
 
-def generateStatFile(fileSettings, year_from_combobox, year_until_combobox, limit_combobox, progressbar):
+def generate(fileSettings, year_from_combobox, year_until_combobox, limit_combobox, progressbar):
     if fileSettings.loaded_file_nums == 0:  return
     progressbar.start(50)
     year_from = year_from_combobox.get()
     year_until = year_until_combobox.get()
     limit = limit_combobox.get()
 
-    fileSettings.year_from = year_from
-    fileSettings.year_until = year_until
-    fileSettings.TPN_PAN_limit = limit
+    fileSettings.year_from = int(year_from)
+    fileSettings.year_until = int(year_until)
+    fileSettings.TPN_PAN_limit = int(limit)
     
     jsonFilepath = f'{fileSettings.result_saving_abspath}\\{fileSettings.result_type}_result_settings.json'
-    write_json(fileSettings.makeJsonObject(), jsonFilepath)
+    write_json(fileSettings.make_json_object(), jsonFilepath)
     settings = load_json(jsonFilepath)
     generate_stat_file(settings)
     progressbar.stop()
@@ -106,7 +106,7 @@ def setup_main_screen(frame, content_type, fileSettings):
     scrollbar["command"] = listbox.yview
 
     tkinter.Button(frame, text="초기화", font=MID_FONT, width=10, height=1, 
-            command=lambda: clearLoadedFiles(fileSettings, listbox), repeatdelay=1000, repeatinterval=100).place(x=630, y=5)
+            command=lambda: clear_loaded_files(fileSettings, listbox), repeatdelay=1000, repeatinterval=100).place(x=630, y=5)
 
     tkinter.Button(frame, text="불러오기", font=MID_FONT, width=10, height=1, 
             command=lambda: load_file(fileSettings, listbox), repeatdelay=1000, repeatinterval=100).place(x=760, y=5)
@@ -127,7 +127,7 @@ def setup_main_screen(frame, content_type, fileSettings):
     year_until_combobox.current(DEFAULT_YEAR_UNTIL - YEAR_FROM_MIN)
 
     tkinter.Button(frame, text="생성", font=MID_FONT, width=10, height=1, 
-            command= lambda: generateStatFile(fileSettings, year_from_combobox, year_until_combobox, limit_combobox, progressbar), repeatdelay=1000, repeatinterval=100).place(x=730, y=370)
+            command= lambda: generate(fileSettings, year_from_combobox, year_until_combobox, limit_combobox, progressbar), repeatdelay=1000, repeatinterval=100).place(x=730, y=370)
   
 
 
@@ -142,7 +142,7 @@ class FileSettings:
         self.year_until = DEFAULT_YEAR_UNTIL
         self.TPN_PAN_limit = DEFAULT_LIMIT
 
-    def makeJsonObject(self):
+    def make_json_object(self):
         data = {
             "result_type": self.result_type,
             "result_saving_abspath": self.result_saving_abspath,
