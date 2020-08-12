@@ -178,5 +178,6 @@ def drop_row_by(df_ori:pd.DataFrame, column_name:str, threshold:int):
 	for c in col_list:
 		if c.split('_')[0] == column_name:
 			df['summation'] = df['summation'] + df[c]
-	df = df.drop(df[df.summation < threshold].index)
+	what_to_drop = [df['summation'] < threshold].index
+	df = df.drop(what_to_drop)
 	return df[col_list]
