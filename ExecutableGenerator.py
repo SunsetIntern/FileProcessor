@@ -21,11 +21,11 @@ for i in range(len(FRAME_TITLE)):
 	notebook.add(frames[i], text=FRAME_TITLE[i])
 
 # Set up screen for each frame
-patentFileSettings = FileSettings('PATENT')
 paperFileSettings = FileSettings('PAPER')
+patentFileSettings = FileSettings('PATENT')
 
 setup_savepath_screen(frames[0], patentFileSettings, paperFileSettings)
-setup_main_screen(frames[1], "PATENT", patentFileSettings)
-setup_main_screen(frames[2], "PAPER", paperFileSettings)
+setup_main_screen(frames[1], "PAPER", paperFileSettings)
+setup_main_screen(frames[2], "PATENT", patentFileSettings)
 
 window.mainloop()

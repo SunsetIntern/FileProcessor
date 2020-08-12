@@ -6,6 +6,7 @@ from typing import List, Dict, Tuple
 from Final import *
 from Constants import *
 
+
 def load_json(fname):
     with open(fname, encoding="utf-8-sig") as f:
         json_obj = json.load(f)
@@ -45,7 +46,7 @@ def clear_loaded_files(fileSettings, listbox):
     listbox.delete(0, fileSettings.loaded_file_nums - 1)
     fileSettings.loaded_file_nums = 0
     fileSettings.loaded_file_abspaths = []
-    
+
 
 def generate(fileSettings, year_from_combobox, year_until_combobox, limit_combobox, progressbar):
     if fileSettings.loaded_file_nums == 0:  return
@@ -67,21 +68,21 @@ def generate(fileSettings, year_from_combobox, year_until_combobox, limit_combob
 
 def setup_savepath_screen(frame, patentFileSettings, paperFileSettings):
     tkinter.Label(frame, text="파일저장 경로설정", font=BIG_FONT).place(x=15, y=20)
-    tkinter.Label(frame, text=f'▶ 특허 통계파일 저장경로 ', font=MID_BIG_FONT).place(x=30, y=113)
-    tkinter.Label(frame, text=f'▶ 논문 통계파일 저장경로 ', font=MID_BIG_FONT).place(x=30, y=283)
+    tkinter.Label(frame, text=f'▶ 논문 통계파일 저장경로 ', font=MID_BIG_FONT).place(x=30, y=113)
+    tkinter.Label(frame, text=f'▶ 통계 통계파일 저장경로 ', font=MID_BIG_FONT).place(x=30, y=283)
     
-    patent_display_savepath = tkinter.Label(frame, text=f'      {DEFAULT_SAVE_PATH}      ', height=2, font=MID_FONT, borderwidth=2, relief="solid")
-    patent_display_savepath.place(x=55, y=170)
-
     paper_display_savepath = tkinter.Label(frame, text=f'      {DEFAULT_SAVE_PATH}      ', height=2, font=MID_FONT, borderwidth=2, relief="solid")
-    paper_display_savepath.place(x=55, y=340)
+    paper_display_savepath.place(x=55, y=170)
+
+    patent_display_savepath = tkinter.Label(frame, text=f'      {DEFAULT_SAVE_PATH}      ', height=2, font=MID_FONT, borderwidth=2, relief="solid")
+    patent_display_savepath.place(x=55, y=340)
 
 
     tkinter.Button(frame, text="저장 경로 변경", font=SMALL_FONT, width=14, height=2, 
-        command= lambda: choose_savepath(patentFileSettings, patent_display_savepath), repeatdelay=1000, repeatinterval=100).place(x=355, y=105)
+        command= lambda: choose_savepath(paperFileSettings, paper_display_savepath), repeatdelay=1000, repeatinterval=100).place(x=355, y=105)
 
     tkinter.Button(frame, text="저장 경로 변경", font=SMALL_FONT, width=14, height=2, 
-        command= lambda: choose_savepath(paperFileSettings, paper_display_savepath), repeatdelay=1000, repeatinterval=100).place(x=355, y=275)
+        command= lambda: choose_savepath(patentFileSettings, patent_display_savepath), repeatdelay=1000, repeatinterval=100).place(x=355, y=275)
 
 def setup_main_screen(frame, content_type, fileSettings):
     tkinter.Label(frame, text="파일 불러오기", font=BIG_FONT).place(x=5, y=5)
@@ -128,7 +129,7 @@ def setup_main_screen(frame, content_type, fileSettings):
 
     tkinter.Button(frame, text="생성", font=MID_FONT, width=10, height=1, 
             command= lambda: generate(fileSettings, year_from_combobox, year_until_combobox, limit_combobox, progressbar), repeatdelay=1000, repeatinterval=100).place(x=730, y=370)
-  
+
 
 
 class FileSettings:

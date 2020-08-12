@@ -14,7 +14,7 @@ YEAR_RANGE = [i for i in range(YEAR_FROM_MIN, YEAR_UNTIL_MAX + 1)]
 DEFAULT_YEAR_FROM = 2000
 DEFAULT_YEAR_UNTIL = 2020
 
-FRAME_TITLE = ["경로 설정", "특허 통계", "논문 통계"]
+FRAME_TITLE = ["경로 설정", "논문 통계", "특허 통계"]
 BIGGEST_FONT = ('Arial', 27)
 BIG_FONT = ('Arial' , 23)
 MID_BIG_FONT = ('Arial' , 19)
