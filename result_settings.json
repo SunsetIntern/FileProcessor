@@ -1,9 +1,17 @@
 {
-  "result_type": "PATENT",
-  "result_saving_abspath": "C:\\Users\\GLaDOS\\Documents\\SJ\\20_Summer_Break\\SunsetIntern\\다운로드 파일_20200803_121348\\오상훈_PROGRAM_데이터\\PROGRAM_데이터\\기본파일\\논문",
-  "loaded_file_nums": 3,
-  "loaded_file_abspaths": ["C:\\Users\\file1.xlsx", "C:\\other_file.xlsx", "C:\\Users\\GLaDOS\\file3.xlsx"],
-  "year_from": 2019,
+  "result_type": "PAPER",
+  "result_saving_abspath": "C:\\Users\\GLaDOS\\Documents\\SJ\\20_Summer_Break\\SunsetIntern\\FileProcessor\\example\\result\\",
+  "loaded_file_nums": 9,
+  "loaded_file_abspaths": ["C:\\Users\\GLaDOS\\Documents\\SJ\\20_Summer_Break\\SunsetIntern\\FileProcessor\\example\\A004B01C01_논문_년도.xlsx",
+  "C:\\Users\\GLaDOS\\Documents\\SJ\\20_Summer_Break\\SunsetIntern\\FileProcessor\\example\\A004B01C02_논문_년도.xlsx",
+  "C:\\Users\\GLaDOS\\Documents\\SJ\\20_Summer_Break\\SunsetIntern\\FileProcessor\\example\\A004B02C01_논문_년도.xlsx",
+  "C:\\Users\\GLaDOS\\Documents\\SJ\\20_Summer_Break\\SunsetIntern\\FileProcessor\\example\\A004B02C02_논문_년도.xlsx",
+  "C:\\Users\\GLaDOS\\Documents\\SJ\\20_Summer_Break\\SunsetIntern\\FileProcessor\\example\\A004B02C03_논문_년도.xlsx",
+  "C:\\Users\\GLaDOS\\Documents\\SJ\\20_Summer_Break\\SunsetIntern\\FileProcessor\\example\\A004B03C01_논문_년도.xlsx",
+  "C:\\Users\\GLaDOS\\Documents\\SJ\\20_Summer_Break\\SunsetIntern\\FileProcessor\\example\\A004B03C02_논문_년도.xlsx",
+  "C:\\Users\\GLaDOS\\Documents\\SJ\\20_Summer_Break\\SunsetIntern\\FileProcessor\\example\\A004B03C03_논문_년도.xlsx",
+  "C:\\Users\\GLaDOS\\Documents\\SJ\\20_Summer_Break\\SunsetIntern\\FileProcessor\\example\\A004B03C04_논문_년도.xlsx"],
+  "year_from": 2002,
   "year_until": 2020,
   "TPN_PAN_limit": 30
 }

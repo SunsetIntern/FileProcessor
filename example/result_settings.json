@@ -1,0 +1,9 @@
+{
+  "result_type": "PATENT",
+  "result_saving_abspath": "/content/result/",
+  "loaded_file_nums": 3,
+  "loaded_file_abspaths": ["/content/example/A004B01C01_논문_년도.xlsx", "/content/example/A004B01C02_논문_년도.xlsx", "/content/example/A004B02C01_논문_년도.xlsx", "/content/example/A004B02C02_논문_년도.xlsx", "/content/example/A004B02C03_논문_년도.xlsx", "/content/example/A004B03C01_논문_년도.xlsx", "/content/example/A004B03C02_논문_년도.xlsx", "/content/example/A004B03C03_논문_년도.xlsx", "/content/example/A004B03C04_논문_년도.xlsx"],
+  "year_from": 2019,
+  "year_until": 2020,
+  "TPN_PAN_limit": 30
+}
