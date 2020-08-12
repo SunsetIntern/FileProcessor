@@ -6,7 +6,7 @@ import re
 import copy
 import openpyxl as xl
 import xlsxwriter
-from Paper_Functions import integrated_paper_file_generator
+from paper_functions import integrated_paper_file_generator
 from Patent_Functions import integrated_patent_file_generator
 from typing import List, Dict, Optional, Union, Tuple
 from pandas.api.types import is_numeric_dtype
@@ -41,12 +41,12 @@ def convert_text_to_dictionary(text_file):
     
 
 def generate_stat_file(settings):
-	text_file = open("CODE별 CODE_NAME.txt", "r", encoding='UTF-8')
-	dict_info = convert_text_to_dictionary(text_file)
+    text_file = open("CODE별 CODE_NAME.txt", "r", encoding='UTF-8')
+    dict_info = convert_text_to_dictionary(text_file)
 
-	if settings["result_type"] == "PAPER":
-		paper = integrated_paper_file_generator(settings, dict_info)
-		paper.generate_excel_file()
+    if settings["result_type"] == "PAPER":
+        paper = integrated_paper_file_generator(settings, dict_info)
+        paper.generate_excel_file()
     else:
         patent = integrated_patent_file_generator(settings, dict_info)
         patent.generate_excel_file()

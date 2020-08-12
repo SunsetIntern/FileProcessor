@@ -69,7 +69,7 @@ class integrated_paper_file_generator:
         self.generate_sheet_26()
         self.generate_sheet_27()
         self.generated_dflist, self.generated_namelist = self.rearrange_sheets(self.generated_dflist, self.generated_namelist)
-        saving_filepath = self.settings["result_saving_abspath"] + self.generate_excel_file_name(path_list)
+        saving_filepath = self.settings["result_saving_abspath"] + "\\" + self.generate_excel_file_name(path_list)
         if not os.path.isdir(self.settings["result_saving_abspath"]):
             os.mkdir(self.settings["result_saving_abspath"])
         create_file(saving_filepath, self.generated_namelist, self.generated_dflist)
